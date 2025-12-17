@@ -21,6 +21,27 @@ Drools 10 is intentionally NOT used due to instability and breaking changes in c
 
 ---
 
+## Project Creation (From Scratch)
+
+The project was created using Maven’s quickstart archetype.
+
+Command used:
+
+```
+mvn -B archetype:generate \
+  -DgroupId=org.example \
+  -DartifactId=drools7-classic \
+  -DarchetypeArtifactId=maven-archetype-quickstart \
+  -DarchetypeVersion=1.5 \
+  -DinteractiveMode=false
+```
+
+After creation:
+- The default `src/test` directory was removed
+- Required Drools folders were added manually
+
+---
+
 ## Project Structure
 <img width="723" height="725" alt="image" src="https://github.com/user-attachments/assets/4e972147-f8a9-46b6-b109-725c858a9bbe" />
 
