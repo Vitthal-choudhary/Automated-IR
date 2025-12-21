@@ -1,13 +1,30 @@
 # Drools 7 Classic – Learning Baseline
 
-This repository contains a **minimal, stable, working Drools project** using **Drools 7 (Classic KIE)** with **Java 17**.
+This branch tells you, how you can configure a **minimal, stable, working Drools project** using **Drools 7 (Classic KIE)** with **Java 17**.
 
 This setup was built from scratch, debugged via CLI, and verified to work reliably.  
-It exists as a **learning baseline** and a **known-good reference** before building a real rule-based system (e.g. automated Incident Response).
+It exists as a **learning baseline** and a **known-good reference** before building a real rule-based system. My case is my project Automated IR
 
 ---
 
-## Technology Stack
+## Installation
+Run this command
+```
+git clone https://github.com/Vitthal-choudhary/Automated-IR.git
+```
+after the repository is cloned, we need to switch to this branch, to see this particular code, if u type 
+```
+git branch -a
+```
+you will see all the branches, then type
+```
+git checkout drool-configs-basics
+```
+Now you are on this branch and u can see the code.
+
+---
+
+## Technology Stack I Used
 
 - OS: Linux (I used Debian-based Parrot Linux)
 - Java: OpenJDK 17
@@ -47,6 +64,10 @@ After creation:
 
 ---
 
+I did not use IntelliJ, because it creates a lot of confusion while starting in creation of maven project, as a beginner, i think this is better.
+
+---
+
 ## Prerequisites
 
 ### Java
@@ -70,13 +91,9 @@ Java version: 17
 
 ---
 
-## pom.xml (Key Points)
-
-- Packaging type: kjar (mandatory)
-- Drools version: 7.74.1.Final
-- Java release: 17
-- Uses kie-maven-plugin
-- Does NOT use exec-maven-plugin
+## pom.xml 
+This file will have all your dependencies, and plugins, and other crucial stuff.
+P.S. This file is very important.
 
 ---
 
@@ -84,6 +101,7 @@ Java version: 17
 
 Location:
 src/main/resources/META-INF/kmodule.xml
+It helps maven while building kjars to look for rules in the right place.
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -97,7 +115,6 @@ src/main/resources/META-INF/kmodule.xml
 Notes:
 - `packages="rules"` must match DRL package
 - `ksession-rules` must match Java code
-- Namespace stays 6.0.0 for Drools 7
 
 ---
 
@@ -105,27 +122,7 @@ Notes:
 
 Location:
 src/main/resources/rules/person.drl
-
-```
-package rules;
-
-import org.example.Person;
-
-rule "Adult"
-when
-    $p : Person(age >= 18)
-then
-    System.out.println($p.getName() + " is an adult");
-end
-
-rule "Minor"
-when
-    $p : Person(age < 18)
-then
-    System.out.println($p.getName() + " is a minor");
-end
-```
-
+This file will contain all the rules which we need to implement.
 ---
 
 ## Build and Run (Correct Way)
@@ -163,22 +160,6 @@ This is NOT an error. It only means no logging backend is configured.
 
 ---
 
-## Verification
-
-Verify kmodule.xml is packaged correctly:
-```
-jar tf target/drools7-classic-1.0-SNAPSHOT.jar | grep kmodule
-```
-
-Expected:
-```
-META-INF/kmodule.xml
-```
-
-If this file is missing, Drools will not work.
-
----
-
 ## Key Lessons
 
 - Drools 10 breaks classic KIE workflows
@@ -196,7 +177,7 @@ If this file is missing, Drools will not work.
 - Debugging aid
 - Comparison point for future upgrades
 
-This repository is intentionally minimal and should remain unchanged.
+This branch should remain unchanged.
 
 ---
 
