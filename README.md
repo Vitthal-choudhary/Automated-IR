@@ -60,6 +60,6 @@ java -cp "target/drools7-classic-1.0-SNAPSHOT.jar:$(cat cp.txt)" org.example.Mai
 ## Expected Output
 
 ```
-Alice is an adult
-Bob is a minor
+High severity incident detected
+Escalation action triggered for incident
 ```
