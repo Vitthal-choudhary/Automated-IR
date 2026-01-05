@@ -18,7 +18,7 @@ git branch -a
 ```
 you will see all the branches, then type
 ```
-git checkout drool-configs-basics
+git checkout adding-to-drools
 ```
 Now you are on this branch and u can see the code.
 

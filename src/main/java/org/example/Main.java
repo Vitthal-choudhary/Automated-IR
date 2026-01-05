@@ -12,8 +12,10 @@ public class Main {
         KieContainer kc = ks.getKieClasspathContainer();
         KieSession ksession = kc.newKieSession("ksession-rules");
 
-        ksession.insert(new Person("Alice", 25));
-        ksession.insert(new Person("Bob", 15));
+//        ksession.insert(new Person("Alice", 25));
+//        ksession.insert(new Person("Bob", 15));
+
+        ksession.insert(new Incident("Malware", 9));
 
         ksession.fireAllRules();
         ksession.dispose();
