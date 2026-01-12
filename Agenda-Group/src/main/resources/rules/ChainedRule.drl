@@ -1,0 +1,19 @@
+package rules;
+
+import org.example.Incident;
+
+rule "Detect High Severity Incident"
+when
+    $i : Incident(severity >= 7, escalated == false)
+then
+    System.out.println("High severity incident detected");
+    $i.setEscalated(true);
+    update($i);
+end
+
+rule "Trigger Escalation Action"
+when
+    $i : Incident(escalated == true)
+then
+    System.out.println("Escalation action triggered for incident");
+end

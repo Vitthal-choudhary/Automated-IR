@@ -1,0 +1,21 @@
+package rules;
+
+import org.example.Incident;
+
+rule "Detect Incident"
+agenda-group "detection"
+when
+    $i : Incident(severity >= 7, escalated == false)
+then
+    System.out.println("Detection phase: incident detected");
+    $i.setEscalated(true);
+    update($i);
+end
+
+rule "Respond to Incident"
+agenda-group "response"
+when
+    $i : Incident(escalated == true)
+then
+    System.out.println("Response phase: incident handled");
+end
