@@ -1,0 +1,17 @@
+package rules;
+
+import org.example.Incident;
+import org.example.IncidentState;
+import org.example.ResponseAction;
+
+rule "Trigger Response"
+agenda-group "response"
+when
+    $i : Incident(state == IncidentState.ESCALATED)
+then
+    System.out.println("[RESPONSE] Generating response for " + $i);
+    insert(new ResponseAction("ISOLATE_HOST"));
+    modify($i) {
+        setState(IncidentState.RESPONDED)
+    }
+end

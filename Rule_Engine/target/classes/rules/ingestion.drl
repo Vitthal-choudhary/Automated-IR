@@ -1,0 +1,14 @@
+package rules;
+
+import org.example.Alert;
+import org.example.Incident;
+
+rule "Create Incident from Alert"
+agenda-group "ingestion"
+when
+    $a : Alert(confidence >= 0.7)
+    not Incident(type == $a.type)
+then
+    System.out.println("[INGESTION] Creating incident from " + $a);
+    insert(new Incident($a.getType()));
+end

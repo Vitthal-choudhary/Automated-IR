@@ -1,0 +1,16 @@
+package rules;
+
+import org.example.Incident;
+import org.example.IncidentState;
+
+rule "Classify Incident"
+agenda-group "classification"
+when
+    $i : Incident(state == IncidentState.NEW)
+then
+    System.out.println("[CLASSIFY] Classifying incident " + $i);
+    modify($i) {
+        setSeverity(8),
+        setState(IncidentState.CLASSIFIED)
+    }
+end

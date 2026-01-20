@@ -1,0 +1,15 @@
+package rules;
+
+import org.example.Incident;
+import org.example.IncidentState;
+
+rule "Escalate High Severity Incident"
+agenda-group "decision"
+when
+    $i : Incident(state == IncidentState.CLASSIFIED, severity >= 7)
+then
+    System.out.println("[DECISION] Escalating incident " + $i);
+    modify($i) {
+        setState(IncidentState.ESCALATED)
+    }
+end
